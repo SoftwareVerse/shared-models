@@ -82,3 +82,21 @@ jobs:
           git tag "$new_tag"
           git push origin "$new_tag"
           git push origin main
+
+      - name: Build package
+        run: |
+          source .venv/bin/activate
+          uv build
+
+      # This workflow runs on push to main, not on a tag ref. Publish using secrets directly.
+      - name: Publish to PyPI
+        run: |
+          source .venv/bin/activate
+          uv publish --username __token__ --password ${{ secrets.PYPI_TOKEN }}
+
+      - name: Create GitHub Release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          new_tag="v${{ steps.semver.outputs.new_version }}"
+          gh release create "$new_tag" --title "$new_tag" --notes "Automated release for $new_tag"
