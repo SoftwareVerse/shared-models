@@ -1,4 +1,4 @@
-name: CI - HTTP Integration Tests with uv
+name: Tests 
 
 on:
   push:
@@ -58,10 +58,11 @@ jobs:
           git diff --quiet && git diff --staged --quiet || git commit -m "style: auto-format code with Black"
           git push origin HEAD:"$TARGET_BRANCH"
 
-      - name: Run HTTP Integration Tests
+      - name: Run Tests
         run: |
           source .venv/bin/activate
-          ./scripts/run_http_tests.sh
+          pytest
+
 
       - name: Upload Coverage Report to Codecov
         uses: codecov/codecov-action@v5
