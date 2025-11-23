@@ -43,19 +43,7 @@ jobs:
       - name: Run tests with coverage
         run: |
           source .venv/bin/activate
-          uv pip install coverage
-          coverage run -m unittest discover -s tests -v
-          mkdir -p coverage_reports
-          coverage xml -o coverage_reports/coverage.xml
-          coverage report -m
-
-      - name: Upload coverage to Codecov
-        uses: codecov/codecov-action@v5
-        with:
-          token: ${{ secrets.CODECOV_TOKEN }}
-          slug: SoftwareVerse/userverse-python-client
-          files: coverage_reports/coverage.xml
-          fail_ci_if_error: true
+          pytest
 
       - name: Determine Version Bump
         id: version
