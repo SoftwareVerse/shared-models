@@ -6,6 +6,10 @@ readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
     "black>=25.11.0",
+    "email_validator>=2.1.1",
     "phonenumbers>=9.0.19",
     "pydantic>=2.12.4",
 ]
+
+[project.optional-dependencies]
+test = ["pytest>=8.3.3"]
