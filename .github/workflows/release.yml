@@ -1,0 +1,84 @@
+name: CI - Release Tag
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write  # Required to push tags and commits
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+
+      - name: Get Latest Tag
+        id: get_tag
+        run: |
+          git fetch --tags
+          latest_tag=$(git tag --sort=-v:refname | head -n 1)
+          echo "Latest tag: $latest_tag"
+          echo "tag=${latest_tag:-v0.1.0}" >> "$GITHUB_OUTPUT"
+
+      - name: Determine Version Bump
+        id: version
+        run: |
+          bump="patch"
+          message=$(git log -1 --pretty=%B)
+
+          if echo "$message" | grep -iqE '\[major\]'; then
+            bump="major"
+          elif echo "$message" | grep -iqE '\[minor\]'; then
+            bump="minor"
+          fi
+
+          echo "bump=$bump" >> "$GITHUB_OUTPUT"
+
+      - name: Calculate Next Version
+        id: semver
+        run: |
+          current=${{ steps.get_tag.outputs.tag }}
+          IFS='.' read -r major minor patch <<<"${current#v}"
+
+          bump=${{ steps.version.outputs.bump }}
+
+          case "$bump" in
+            major)
+              new_version="$((major + 1)).0.0"
+              ;;
+            minor)
+              new_version="$major.$((minor + 1)).0"
+              ;;
+            patch)
+              new_version="$major.$minor.$((patch + 1))"
+              ;;
+          esac
+
+          echo "new_version=$new_version" >> "$GITHUB_OUTPUT"
+
+      - name: Set up Git credentials
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+          git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
+
+      - name: Update version in pyproject.toml
+        run: |
+          new_version=${{ steps.semver.outputs.new_version }}
+          sed -i -E '/^\[project\]/,/^\[.*\]/ s/^version = ".*"/version = "'"$new_version"'"/' pyproject.toml
+
+          git add pyproject.toml
+          git commit -m "chore: bump version to v${new_version}"
+
+      - name: Create and Push Tag
+        run: |
+          new_tag="v${{ steps.semver.outputs.new_version }}"
+          git tag "$new_tag"
+          git push origin "$new_tag"
+          git push origin main
