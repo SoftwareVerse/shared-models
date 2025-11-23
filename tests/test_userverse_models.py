@@ -67,7 +67,10 @@ class TestCompanyModels:
 class TestCompanyRoles:
     def test_default_role_properties(self):
         assert CompanyDefaultRoles.ADMINISTRATOR.name_value == "Administrator"
-        assert CompanyDefaultRoles.ADMINISTRATOR.description == "Full access to manage users and data"
+        assert (
+            CompanyDefaultRoles.ADMINISTRATOR.description
+            == "Full access to manage users and data"
+        )
 
     def test_role_delete_rejects_default_role(self):
         with pytest.raises(ValidationError):
