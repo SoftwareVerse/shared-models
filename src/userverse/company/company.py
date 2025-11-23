@@ -1,8 +1,10 @@
 from typing import Optional
+
 from pydantic import BaseModel, EmailStr, field_validator, Field
-from userverse.company.address import CompanyAddressModel
-from userverse.validators.phone_number import validate_phone_number_format
-from userverse.generic_pagination import PaginationParams
+
+from .address import CompanyAddressModel
+from ..validators.phone_number import validate_phone_number_format
+from ..generic_pagination import PaginationParams
 
 
 class CompanyReadModel(BaseModel):

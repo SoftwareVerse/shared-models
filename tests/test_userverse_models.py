@@ -1,16 +1,16 @@
 import pytest
 from pydantic import ValidationError
 
-from userverse.generic_pagination import PaginationParams
-from userverse.validators.phone_number import validate_phone_number_format
-from userverse.user.user import (
+from src.userverse.generic_pagination import PaginationParams
+from src.userverse.validators.phone_number import validate_phone_number_format
+from src.userverse.user.user import (
     TokenResponseModel,
     UserCreateModel,
     UserQueryParams,
 )
-from userverse.company.roles import CompanyDefaultRoles, RoleDeleteModel
-from userverse.company.user import CompanyUserAddModel
-from userverse.company.company import CompanyCreateModel
+from src.userverse.company.roles import CompanyDefaultRoles, RoleDeleteModel
+from src.userverse.company.user import CompanyUserAddModel
+from src.userverse.company.company import CompanyCreateModel
 
 
 class TestPhoneNumberValidation:

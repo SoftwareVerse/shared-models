@@ -1,7 +1,9 @@
 from typing import Optional, Literal
+
 from pydantic import BaseModel, EmailStr, field_validator, Field
-from userverse.validators.phone_number import validate_phone_number_format
-from userverse.generic_pagination import PaginationParams
+
+from ..validators.phone_number import validate_phone_number_format
+from ..generic_pagination import PaginationParams
 
 
 class UserLoginModel(BaseModel):

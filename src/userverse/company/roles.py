@@ -3,7 +3,7 @@ from typing import Optional
 from pydantic import BaseModel
 from pydantic import field_validator, Field
 
-from userverse.generic_pagination import PaginationParams
+from ..generic_pagination import PaginationParams
 
 
 class CompanyDefaultRoles(str, Enum):

@@ -1,6 +1,7 @@
 from pydantic import BaseModel, EmailStr, Field
-from userverse.company.roles import CompanyDefaultRoles
-from userverse.user.user import UserReadModel
+
+from .roles import CompanyDefaultRoles
+from ..user.user import UserReadModel
 
 
 class CompanyUserReadModel(UserReadModel):
