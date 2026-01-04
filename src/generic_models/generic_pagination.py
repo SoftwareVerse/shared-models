@@ -27,10 +27,9 @@ class PaginationParams(BaseModel):
     limit: int = Field(10, ge=1, le=100)
     page: int = Field(1, ge=1)  # Page is 1-indexed
 
-    @classmethod
-    def offset(cls) -> int:
+    def offset(self) -> int:
         """Calculate the offset based on the current page and limit."""
-        return (cls.page - 1) * cls.limit
+        return (self.page - 1) * self.limit
 
 
 class PaginationMeta(BaseModel):
