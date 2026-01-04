@@ -1,8 +1,8 @@
 import pytest
 from pydantic import ValidationError
 
-from src.userverse_models.user.password import OTPValidationRequest, PasswordResetRequest
-from src.userverse_models.user.user import (
+from userverse_models.user.password import OTPValidationRequest, PasswordResetRequest
+from userverse_models.user.user import (
     TokenResponseModel,
     UserCreateModel,
     UserLoginModel,

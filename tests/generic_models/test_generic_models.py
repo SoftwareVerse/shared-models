@@ -1,15 +1,15 @@
 import pytest
 from pydantic import BaseModel, ValidationError
 
-from src.generic_models.app_error import AppErrorResponseModel, DetailModel
-from src.generic_models.generic_pagination import (
+from generic_models.app_error import AppErrorResponseModel, DetailModel
+from generic_models.generic_pagination import (
     FilterLogic,
     MatchType,
     PaginatedResponse,
     PaginationMeta,
     PaginationParams,
 )
-from src.generic_models.generic_response import GenericResponseModel
+from generic_models.generic_response import GenericResponseModel
 
 
 class Item(BaseModel):

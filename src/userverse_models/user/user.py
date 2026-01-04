@@ -2,7 +2,7 @@ from typing import Optional, Literal
 
 from pydantic import BaseModel, EmailStr, field_validator, Field
 
-from src.generic_models.generic_pagination import PaginationParams
+from generic_models.generic_pagination import PaginationParams
 
 from ..validators.phone_number import validate_phone_number_format
 

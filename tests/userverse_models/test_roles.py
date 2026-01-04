@@ -1,7 +1,7 @@
 import pytest
 from pydantic import ValidationError
 
-from src.userverse_models.company.roles import (
+from userverse_models.company.roles import (
     CompanyDefaultRoles,
     RoleCreateModel,
     RoleDeleteModel,

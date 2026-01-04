@@ -1,14 +1,14 @@
 import pytest
 from pydantic import ValidationError
 
-from src.userverse_models.company.address import CompanyAddressModel
-from src.userverse_models.company.company import (
+from userverse_models.company.address import CompanyAddressModel
+from userverse_models.company.company import (
     CompanyCreateModel,
     CompanyQueryParamsModel,
     CompanyReadModel,
     CompanyUpdateModel,
 )
-from src.userverse_models.company.user import CompanyUserAddModel, CompanyUserReadModel
+from userverse_models.company.user import CompanyUserAddModel, CompanyUserReadModel
 
 
 class TestCompanyAddressModel:
