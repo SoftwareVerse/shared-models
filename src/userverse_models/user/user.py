@@ -2,16 +2,21 @@ from typing import Optional, Literal
 
 from pydantic import BaseModel, EmailStr, field_validator, Field
 
+from generic_models.generic_pagination import PaginationParams
+
 from ..validators.phone_number import validate_phone_number_format
-from ..generic_pagination import PaginationParams
 
 
 class UserLoginModel(BaseModel):
+    """Model for user login."""
+
     email: EmailStr
     password: str
 
 
 class UserUpdateModel(BaseModel):
+    """Model for updating user details."""
+
     first_name: Optional[str] = None
     last_name: Optional[str] = None
     phone_number: Optional[str] = Field(
@@ -20,12 +25,15 @@ class UserUpdateModel(BaseModel):
     password: Optional[str] = None
 
     @field_validator("phone_number")
+    @classmethod
     def validate_phone_number(cls, v: Optional[str]) -> Optional[str]:
         """Validate phone number format."""
         return validate_phone_number_format(v)
 
 
 class UserCreateModel(BaseModel):
+    """Model for creating a new user."""
+
     first_name: Optional[str] = None
     last_name: Optional[str] = None
     phone_number: Optional[str] = Field(
@@ -33,12 +41,15 @@ class UserCreateModel(BaseModel):
     )
 
     @field_validator("phone_number")
+    @classmethod
     def validate_phone_number(cls, v: Optional[str]) -> Optional[str]:
         """Validate phone number format."""
         return validate_phone_number_format(v)
 
 
 class UserReadModel(BaseModel):
+    """Model representing a user."""
+
     id: int
     first_name: Optional[str] = None
     last_name: Optional[str] = None
@@ -53,6 +64,8 @@ class UserReadModel(BaseModel):
 
 
 class TokenResponseModel(BaseModel):
+    """Model for token response."""
+
     token_type: Literal["bearer"] = Field(
         "bearer",
         description="Type of the token",
@@ -68,6 +81,8 @@ class TokenResponseModel(BaseModel):
 
 
 class UserQueryParams(PaginationParams):
+    """Model for querying users with optional filters."""
+
     role_name: Optional[str] = Field(None, description="Filter by role name")
     first_name: Optional[str] = Field(None, description="Filter by user first name")
     last_name: Optional[str] = Field(None, description="Filter by user last name")

@@ -3,6 +3,8 @@ from pydantic import BaseModel, Field
 
 
 class CompanyAddressModel(BaseModel):
+    """Model representing a company's address."""
+
     street: Optional[str] = Field(None, json_schema_extra={"example": "123 Main St"})
     city: Optional[str] = Field(None, json_schema_extra={"example": "Cape Town"})
     state: Optional[str] = Field(None, json_schema_extra={"example": "CT"})

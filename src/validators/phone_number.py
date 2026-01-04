@@ -3,6 +3,7 @@ import phonenumbers
 
 
 def validate_phone_number_format(phone: Optional[str]) -> Optional[str]:
+    """Validate and format the phone number to E.164 standard."""
     if not phone:
         return phone
 
