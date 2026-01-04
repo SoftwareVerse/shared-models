@@ -34,12 +34,12 @@ class TestPaginationParams:
     def test_offset_calculation_defaults(self):
         """Test that default pagination parameters calculate offset correctly."""
         params = PaginationParams()
-        assert params.offset == 0
+        assert params.offset() == 0
 
     def test_offset_calculation_non_default(self):
         """Test that non-default pagination parameters calculate offset correctly."""
         params = PaginationParams(limit=25, page=3)
-        assert params.offset == 50
+        assert params.offset() == 50
 
 
 class TestUserModels:
@@ -53,7 +53,7 @@ class TestUserModels:
         """Test that UserQueryParams inherits from PaginationParams."""
         params = UserQueryParams(page=2)
         assert params.limit == 10
-        assert params.offset == 10
+        assert params.offset() == 10
 
     def test_token_response_default_token_type(self):
         """Test that TokenResponseModel has default token_type 'bearer'."""
