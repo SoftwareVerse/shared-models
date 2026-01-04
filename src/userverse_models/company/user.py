@@ -8,11 +8,13 @@ from ..user.user import UserReadModel
 
 class CompanyUserReadModel(UserReadModel):
     """Model representing a user within a company, including their role."""
+
     role_name: str
 
 
 class CompanyUserAddModel(BaseModel):
     """Model for adding a user to a company with a specific role."""
+
     email: Optional[EmailStr] = Field(
         default=None,
         json_schema_extra={"example": "user.one@email.com"},

@@ -7,8 +7,10 @@ from src.generic_models.generic_pagination import PaginationParams
 from .address import CompanyAddressModel
 from ..validators.phone_number import validate_phone_number_format
 
+
 class CompanyReadModel(BaseModel):
     """Model representing a company."""
+
     id: int
     name: Optional[str] = None
     description: Optional[str] = None
@@ -22,6 +24,7 @@ class CompanyReadModel(BaseModel):
 
 class CompanyUpdateModel(BaseModel):
     """Model for updating company details."""
+
     name: Optional[str] = None
     description: Optional[str] = None
     industry: Optional[str] = None
@@ -39,6 +42,7 @@ class CompanyUpdateModel(BaseModel):
 
 class CompanyCreateModel(BaseModel):
     """Model for creating a new company."""
+
     name: Optional[str] = None
     description: Optional[str] = None
     industry: Optional[str] = None
@@ -56,7 +60,8 @@ class CompanyCreateModel(BaseModel):
 
 
 class CompanyQueryParamsModel(PaginationParams):
-    """Model for querying companies with optional filters.""" 
+    """Model for querying companies with optional filters."""
+
     role_name: Optional[str] = None
     name: Optional[str] = None
     description: Optional[str] = None

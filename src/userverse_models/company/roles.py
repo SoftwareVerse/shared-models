@@ -5,8 +5,10 @@ from pydantic import field_validator, Field
 
 from src.generic_models.generic_pagination import PaginationParams
 
+
 class CompanyDefaultRoles(str, Enum):
     """Enumeration of default company roles with descriptions."""
+
     ADMINISTRATOR = "Administrator: Full access to manage users and data"
     VIEWER = "Viewer: Read-only access to company data"
 
@@ -23,18 +25,21 @@ class CompanyDefaultRoles(str, Enum):
 
 class RoleCreateModel(BaseModel):
     """Model for creating a new role."""
+
     name: str
     description: Optional[str]
 
 
 class RoleUpdateModel(BaseModel):
     """Model for updating a role."""
+
     name: Optional[str]
     description: Optional[str]
 
 
 class RoleDeleteModel(BaseModel):
     """Model for deleting a role with replacement."""
+
     replacement_role_name: str
     role_name_to_delete: str
 
@@ -50,11 +55,13 @@ class RoleDeleteModel(BaseModel):
 
 class RoleReadModel(BaseModel):
     """Model representing a role."""
+
     name: Optional[str]
     description: Optional[str]
 
 
 class RoleQueryParamsModel(PaginationParams):
     """Model for querying roles with optional filters."""
+
     name: Optional[str] = Field(None, description="Filter by role name")
     description: Optional[str] = Field(None, description="Filter by role description")

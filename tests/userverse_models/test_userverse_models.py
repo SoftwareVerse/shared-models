@@ -15,6 +15,7 @@ from src.userverse_models.company.company import CompanyCreateModel
 
 class TestPhoneNumberValidation:
     """Tests for phone number validation."""
+
     def test_accepts_none(self):
         """Test that None is accepted and returns None."""
         assert validate_phone_number_format(None) is None
@@ -30,7 +31,8 @@ class TestPhoneNumberValidation:
 
 
 class TestPaginationParams:
-    """Tests for PaginationParams model."""    
+    """Tests for PaginationParams model."""
+
     def test_offset_calculation_defaults(self):
         """Test that default pagination parameters calculate offset correctly."""
         params = PaginationParams()
@@ -44,6 +46,7 @@ class TestPaginationParams:
 
 class TestUserModels:
     """Tests for user models."""
+
     def test_user_create_validates_and_formats_phone_number(self):
         """Test that UserCreateModel validates and formats phone number."""
         user = UserCreateModel(phone_number="+441234567890")
@@ -68,6 +71,7 @@ class TestUserModels:
 
 class TestCompanyModels:
     """Tests for company models."""
+
     def test_company_create_validates_phone_number(self):
         """Test that CompanyCreateModel validates phone number."""
         company = CompanyCreateModel(
@@ -79,6 +83,7 @@ class TestCompanyModels:
 
 class TestCompanyRoles:
     """Tests for company role models."""
+
     def test_default_role_properties(self):
         """Test that CompanyDefaultRoles properties return correct values."""
         assert CompanyDefaultRoles.ADMINISTRATOR.name_value == "Administrator"
@@ -98,6 +103,7 @@ class TestCompanyRoles:
 
 class TestCompanyUser:
     """Tests for company user models."""
+
     def test_company_user_add_default_role(self):
         """Test that CompanyUserAddModel assigns default role if none provided."""
         company_user = CompanyUserAddModel(email="user@example.com")
