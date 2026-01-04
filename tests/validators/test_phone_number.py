@@ -5,6 +5,7 @@ from validators.phone_number import validate_phone_number_format
 
 class TestValidatePhoneNumberFormat:
     """Tests for phone number validation and formatting."""
+
     def test_none_returns_none(self):
         """None should pass through unchanged."""
         assert validate_phone_number_format(None) is None

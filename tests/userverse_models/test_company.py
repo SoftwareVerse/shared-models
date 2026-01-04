@@ -13,6 +13,7 @@ from userverse_models.company.user import CompanyUserAddModel, CompanyUserReadMo
 
 class TestCompanyAddressModel:
     """Tests for company address model."""
+
     def test_optional_fields_default_to_none(self):
         """Address fields should default to None when not provided."""
         address = CompanyAddressModel()
@@ -40,9 +41,12 @@ class TestCompanyAddressModel:
 
 class TestCompanyModels:
     """Tests for company models."""
+
     def test_company_create_formats_phone_number(self):
         """Phone number should be formatted to E.164."""
-        company = CompanyCreateModel(phone_number="+12025550123", email="info@example.com")
+        company = CompanyCreateModel(
+            phone_number="+12025550123", email="info@example.com"
+        )
         assert company.phone_number == "+12025550123"
 
     def test_company_update_rejects_invalid_phone(self):
@@ -64,6 +68,7 @@ class TestCompanyModels:
 
 class TestCompanyUserModels:
     """Tests for company user models."""
+
     def test_company_user_add_defaults_role(self):
         """Role should default to Viewer when not provided."""
         user = CompanyUserAddModel(email="user@example.com")

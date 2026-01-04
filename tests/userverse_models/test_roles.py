@@ -13,6 +13,7 @@ from userverse_models.company.roles import (
 
 class TestCompanyDefaultRoles:
     """Tests for default roles enum."""
+
     def test_name_and_description_properties(self):
         """Enum properties should split name and description."""
         assert CompanyDefaultRoles.ADMINISTRATOR.name_value == "Administrator"
@@ -24,6 +25,7 @@ class TestCompanyDefaultRoles:
 
 class TestRoleModels:
     """Tests for role models."""
+
     def test_role_create_roundtrip(self):
         """RoleCreateModel should preserve provided values."""
         role = RoleCreateModel(name="Manager", description="Manages users")
