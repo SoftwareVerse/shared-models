@@ -7,19 +7,21 @@ Package of shared Pydantic models for Userverse services and clients.
 ```bash
 git clone https://github.com/SoftwareVerse/softwareVerse-shared-python-utils.git
 cd softwareVerse-shared-python-utils
-python -m venv .venv
+uv venv
 source .venv/bin/activate
-pip install -e .
+uv pip install -e .
 ```
 
 ## Usage (separate projects)
 
 ```bash
-# in your other project
+# in your other project, with pip
 pip install git+https://github.com/SoftwareVerse/softwareVerse-shared-python-utils.git
+# with uv
+uv add git+https://github.com/SoftwareVerse/softwareVerse-shared-python-utils.git
 ```
 
-```bash
+```bash 
 # Install a specific release tag (recommended for stability)
 # Tags follow semantic versioning (vMAJOR.MINOR.PATCH)
 # See: https://github.com/SoftwareVerse/softwareVerse-shared-python-utils/tags
