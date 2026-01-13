@@ -1,24 +1,26 @@
 import pytest
 from pydantic import BaseModel, ValidationError
 
-from generic_models.app_error import AppErrorResponseModel, DetailModel
-from generic_models.generic_pagination import (
+from sverse_generic_models.app_error import AppErrorResponseModel, DetailModel
+from sverse_generic_models.generic_pagination import (
     FilterLogic,
     MatchType,
     PaginatedResponse,
     PaginationMeta,
     PaginationParams,
 )
-from generic_models.generic_response import GenericResponseModel
+from sverse_generic_models.generic_response import GenericResponseModel
 
 
 class Item(BaseModel):
     """Simple record type for pagination tests."""
+
     id: int
 
 
 class TestAppErrorModels:
     """Tests for application error models."""
+
     def test_detail_model_roundtrip(self):
         """DetailModel should preserve message and error fields."""
         detail = DetailModel(message="Not found", error="missing_resource")
@@ -34,6 +36,7 @@ class TestAppErrorModels:
 
 class TestGenericResponseModel:
     """Tests for GenericResponseModel."""
+
     def test_generic_response_with_data(self):
         """GenericResponseModel should accept typed data."""
         response = GenericResponseModel[str](message="ok", data="value")
@@ -53,6 +56,7 @@ class TestGenericResponseModel:
 
 class TestPaginationEnums:
     """Tests for pagination enums."""
+
     def test_match_type_values(self):
         """MatchType should expose expected string values."""
         assert MatchType.PARTIAL.value == "partial"
@@ -67,6 +71,7 @@ class TestPaginationEnums:
 
 class TestPaginationParams:
     """Tests for PaginationParams."""
+
     def test_defaults(self):
         """Default pagination values should be limit 10, page 1."""
         params = PaginationParams()
@@ -94,6 +99,7 @@ class TestPaginationParams:
 
 class TestPaginatedResponse:
     """Tests for PaginatedResponse and PaginationMeta."""
+
     def test_paginated_response_structure(self):
         """PaginatedResponse should accept records and pagination metadata."""
         meta = PaginationMeta(

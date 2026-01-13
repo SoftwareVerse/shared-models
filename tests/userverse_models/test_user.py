@@ -14,6 +14,7 @@ from userverse_models.user.user import (
 
 class TestUserLoginModel:
     """Tests for user login model."""
+
     def test_login_requires_valid_email(self):
         """Invalid email should raise a ValidationError."""
         with pytest.raises(ValidationError):
@@ -22,6 +23,7 @@ class TestUserLoginModel:
 
 class TestUserCreateModel:
     """Tests for user creation model."""
+
     def test_user_create_formats_phone_number(self):
         """Phone numbers should be formatted to E.164."""
         user = UserCreateModel(phone_number="+12025550123")
@@ -30,6 +32,7 @@ class TestUserCreateModel:
 
 class TestUserUpdateModel:
     """Tests for user update model."""
+
     def test_user_update_rejects_invalid_phone(self):
         """Invalid phone numbers should raise ValidationError."""
         with pytest.raises(ValidationError):
@@ -38,6 +41,7 @@ class TestUserUpdateModel:
 
 class TestUserReadModel:
     """Tests for user read model."""
+
     def test_defaults_for_optional_fields(self):
         """Optional fields should default to None or False as configured."""
         user = UserReadModel(id=1, email="user@example.com")
@@ -47,6 +51,7 @@ class TestUserReadModel:
 
 class TestTokenResponseModel:
     """Tests for token response model."""
+
     def test_default_token_type(self):
         """Token type should default to bearer."""
         token = TokenResponseModel(
@@ -60,6 +65,7 @@ class TestTokenResponseModel:
 
 class TestUserQueryParams:
     """Tests for user query params."""
+
     def test_inherits_pagination_defaults(self):
         """Pagination defaults should be applied."""
         params = UserQueryParams(page=2)
@@ -69,6 +75,7 @@ class TestUserQueryParams:
 
 class TestPasswordModels:
     """Tests for password reset models."""
+
     def test_password_reset_requires_valid_email(self):
         """Invalid emails should raise ValidationError."""
         with pytest.raises(ValidationError):
