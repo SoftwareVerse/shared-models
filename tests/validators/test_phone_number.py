@@ -1,6 +1,6 @@
 import pytest
 
-from validators.phone_number import validate_phone_number_format
+from sverse_validators.phone_number import validate_phone_number_format
 
 
 class TestValidatePhoneNumberFormat:
