@@ -8,7 +8,6 @@ from sverse_validators.phone_number import validate_phone_number_format
 from .address import CompanyAddressModel
 
 
-
 class CompanyReadModel(BaseModel):
     """Model representing a company."""
 
